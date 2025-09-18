@@ -1,41 +1,63 @@
-# BitDevs Melbourne
+# BitDevs Melbourne - Static Site
 
-Simple Jekyll site for hosting all of the links from meetups past and future.
+A minimal, fast static website built with plain HTML and Tailwind CSS.
 
-## Development
+## Features
 
-You'll need [Ruby & Jekyll](https://jekyllrb.com/docs/installation/) to run the
-site locally. Once they're setup:
+- **No dependencies**: Just HTML, CSS, and a simple build script
+- **Mobile responsive**: Tailwind CSS for mobile-first design  
+- **Fast**: No JavaScript frameworks, minimal JS for post listings
+- **Easy content management**: Markdown posts converted to HTML
 
-- Clone the repository and go into the directory
-- Run `bundle install`
-- Run `jekyll serve`
-- Go to http://localhost:4000
+## Quick Start
 
-## Making a Post
+1. **Add a new post**: Create a markdown file in `../_posts/` with format `YYYY-MM-DD-Title.md`
+2. **Build the site**: Run `./build.sh`
+3. **Deploy**: Upload all files to your web server
 
-To make a new post, make a new file in `_posts/` with a title of
-`YYYY-MM-DD-title-goes-here`. At the top of the file you'll want to provide the
-following information:
+## Build System
 
-```md
----
-layout: post # Always post
-type: socratic # or whitepaper for a whitepaper series
-title: "Name of the Post"
-meetup: https://www.meetup.com/BitDevsNYC/events/[event id here]/
----
+The `build.sh` script:
+- Converts markdown posts to HTML using pandoc
+- Generates post listings automatically
+- Uses a simple HTML template for consistent styling
+- Copies static assets
+
+## File Structure
+
+```
+├── index.html          # Homepage
+├── about.html          # About page  
+├── posts.html          # All posts listing
+├── posts/              # Generated post HTML files
+├── template.html       # Post template for pandoc
+├── build.sh           # Build script
+└── assets/            # Static assets
 ```
 
-After that, it's just simple markdown. The site will auto-generate the rest.
+## Adding New Posts
 
-## Changing Site Data
+Create markdown files in `../_posts/` with this frontmatter:
 
-All site configurations are either contained in `_config.yml` or
-`_data/settings.yml`. Some data is duplicated between the two due to the way
-Jekyll injects variables, so be sure to update both.
+```markdown
+---
+layout: post
+type: socratic
+date: "2025-XX-XX 19:00:00"
+title: "Month Year"
+---
 
-## Attributions
+Your content here...
+```
 
-Thanks to [LeNPaul](https://github.com/LeNPaul/jekyll-starter-kit) for the
-Jekyll starter kit this was forked from.
+## Requirements
+
+- pandoc (for markdown to HTML conversion)
+- python3 (for post listing generation)
+
+## Customization
+
+- **Colors**: Edit the Tailwind config in each HTML file
+- **Fonts**: Change the Google Fonts imports
+- **Layout**: Modify `template.html` for post layout
+- **Styling**: All styling is done with Tailwind classes
